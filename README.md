@@ -22,33 +22,33 @@
 NSData *data = [[NSData alloc] initWithContentsOfURL:
               
 [NSURL URLWithString:@"http://api.openweathermap.org/data/2.5/history/city?id=1850147&type=hour&start=1405762954&cnt=1"]];
+　　    
     
     
+NSError *error;
+NSMutableDictionary *parsedData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
     
-    NSError *error;
-    NSMutableDictionary *parsedData = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:&error];
-    
-   NSLog  (@"%@", parsedData[@"main"][@"temp"]);
+NSLog  (@"%@", parsedData[@"main"][@"temp"]);
     
     
     //ココで上手く「temp_max」の数字が抜き出せないです。
     
-   NSString *print = [[NSString alloc] initWithFormat:@"%@",parsedData[@"main"][@"temp"]] ;
+NSString *print = [[NSString alloc] initWithFormat:@"%@",parsedData[@"main"][@"temp"]] ;
     
    
     
-    int retInt = [print intValue];
+int retInt = [print intValue];
     
-    int n = 273.15;
-    
-    
-   NSLog(@"%d", retInt - n );
-    
-    NSLog(@"%@", print );
+int n = 273.15;
     
     
-   NSString *ondo = [[NSString alloc] initWithFormat:@"%d",abs(retInt - n)] ;
+NSLog(@"%d", retInt - n );
+    
+NSLog(@"%@", print );
+    
+    
+NSString *ondo = [[NSString alloc] initWithFormat:@"%d",abs(retInt - n)] ;
     
     
     
-    self.kion.text = ondo;
+self.kion.text = ondo;
